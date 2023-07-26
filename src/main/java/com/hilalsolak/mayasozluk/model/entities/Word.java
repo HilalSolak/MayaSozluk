@@ -10,13 +10,13 @@ public class Word extends BaseModel {
 
     private String meaning;
 
-    private int searchCount;
+    private Integer searchCount;
     private String createBy;
 
     public Word() {
     }
 
-    public Word(String word, String meaning, int searchCount, String createBy) {
+    public Word(String word, String meaning, Integer searchCount, String createBy) {
         this.word = word;
         this.meaning = meaning;
         this.searchCount = searchCount;
@@ -39,11 +39,11 @@ public class Word extends BaseModel {
         this.meaning = meaning;
     }
 
-    public int getSearchCount() {
+    public Integer getSearchCount() {
         return searchCount;
     }
 
-    public void setSearchCount(int searchCount) {
+    public void setSearchCount(Integer searchCount) {
         this.searchCount = searchCount;
     }
 
