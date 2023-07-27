@@ -1,7 +1,7 @@
 package com.hilalsolak.mayasozluk.service;
 
-import com.hilalsolak.mayasozluk.model.dto.WordRequest;
-import com.hilalsolak.mayasozluk.model.dto.WordResponse;
+import com.hilalsolak.mayasozluk.model.dto.requests.WordRequest;
+import com.hilalsolak.mayasozluk.model.dto.responses.WordResponse;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -15,7 +15,9 @@ public interface WordService {
     WordResponse createWord(WordRequest request);
 
     WordResponse updateWordById(UUID id, WordRequest request);
+
     void deleteWordById(UUID id);
+
     List<WordResponse> getCategoriesBySearchText(@RequestParam String filter);
 
     void increaseWordSearchCount(String wordName);

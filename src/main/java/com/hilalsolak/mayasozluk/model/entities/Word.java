@@ -6,29 +6,30 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "T_WORDS")
 public class Word extends BaseModel {
-    private String word;
+    private String mayaWord;
 
     private String meaning;
 
     private Integer searchCount;
+
     private String createBy;
 
     public Word() {
     }
 
-    public Word(String word, String meaning, Integer searchCount, String createBy) {
-        this.word = word;
+    public Word(String mayaWord, String meaning, Integer searchCount, String createBy) {
+        this.mayaWord = mayaWord;
         this.meaning = meaning;
         this.searchCount = searchCount;
         this.createBy = createBy;
     }
 
-    public String getWord() {
-        return word;
+    public String getMayaWord() {
+        return mayaWord;
     }
 
-    public void setWord(String word) {
-        this.word = word;
+    public void setMayaWord(String mayaWord) {
+        this.mayaWord = mayaWord;
     }
 
     public String getMeaning() {
