@@ -16,6 +16,7 @@ public interface WordRepository extends JpaRepository<Word, UUID> {
     @Query(value = "SELECT * FROM t_words ORDER BY maya_word ASC", nativeQuery = true)
     List<Word> findAllByMayaWordAsc();
 
+
     Word findWordByMayaWord(String wordName);
 
 }

@@ -18,7 +18,7 @@ public interface WordService {
 
     void deleteWordById(UUID id);
 
-    List<WordResponse> getCategoriesBySearchText(@RequestParam String filter);
+    List<WordResponse> getWordsBySearchText(@RequestParam String filter);
 
     void increaseWordSearchCount(String wordName);
 }

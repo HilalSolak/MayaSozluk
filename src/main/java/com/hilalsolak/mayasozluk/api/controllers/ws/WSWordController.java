@@ -1,4 +1,4 @@
-package com.hilalsolak.mayasozluk.api.controllers;
+package com.hilalsolak.mayasozluk.api.controllers.ws;
 
 import com.hilalsolak.mayasozluk.model.dto.requests.WordRequest;
 import com.hilalsolak.mayasozluk.model.dto.responses.WordResponse;
@@ -11,11 +11,11 @@ import java.util.UUID;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/words")
-public class WordController {
+@RequestMapping("/api/words/web-service")
+public class WSWordController {
     private final WordService service;
 
-    public WordController(WordService service) {
+    public WSWordController(WordService service) {
         this.service = service;
     }
     @GetMapping
@@ -29,7 +29,7 @@ public class WordController {
         return service.getWordById(id);
     }
 
-    @PostMapping
+    @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public WordResponse createWord(@RequestBody WordRequest request){
         return service.createWord(request);
@@ -40,8 +40,8 @@ public class WordController {
         return service.updateWordById(id,request);
     }
     @GetMapping("/filter")
-    public List<WordResponse> getCategoriesBySearchText(@RequestParam("filter") String filter){
-        return service.getCategoriesBySearchText(filter);
+    public List<WordResponse> getWordsBySearchText(@RequestParam("filter") String filter){
+        return service.getWordsBySearchText(filter);
     }
     @PutMapping("/increase/{wordName}")
     @ResponseStatus(HttpStatus.OK)

@@ -11,6 +11,7 @@ import com.hilalsolak.mayasozluk.utils.constants.GlobalConstants;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -43,6 +44,9 @@ public class WordServiceImpl implements WordService {
         checkIfWordIsAlreadyExists(request.mayaWord());
 
         Word word = new Word();
+        if(request.title()==null)
+            word.setCreateBy("WS");
+        else if(request.title().equals("BI")) word.setCreateBy("BI");
         word.setMayaWord(request.mayaWord());
         word.setMeaning(request.meaning());
         WordResponse response = ConverterResponse.convert(repository.save(word));
@@ -56,6 +60,7 @@ public class WordServiceImpl implements WordService {
         Word word = getWordByIdInRepository(id);
         word.setMayaWord(request.mayaWord());
         word.setMeaning(request.meaning());
+        word.setCreatedTime(LocalDateTime.now());
         WordResponse response = ConverterResponse.convert(repository.save(word));
 
         return response;
@@ -68,9 +73,9 @@ public class WordServiceImpl implements WordService {
     }
 
     @Override
-    public List<WordResponse> getCategoriesBySearchText(String filter) {
-        List<WordResponse> responseList = repository.findAllByMayaWordAsc().stream().filter(word -> word.getMayaWord()
-                .startsWith(filter)).map(ConverterResponse::convert).toList();
+    public List<WordResponse> getWordsBySearchText(String filter) {
+        List<WordResponse> responseList = repository.findAllByMayaWordAsc().stream().filter(word -> word.getMayaWord().toLowerCase()
+                .startsWith(filter.toLowerCase())).map(ConverterResponse::convert).toList();
 
         return responseList;
     }
