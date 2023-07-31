@@ -1,6 +1,6 @@
 version: "3.9"
 services:
-  github:
+  mysql:
     image: mysql:latest
     container_name: mayasozluk-mysqldb
     environment:
@@ -8,3 +8,23 @@ services:
       MYSQL_DATABASE: mayasozluk
     ports:
       - "3306:3306"
+
+  mayaSozluk:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mayasozluk-app
+    image: mayasozluk-app-image
+    depends_on:
+      - mysql
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/mayasozluk?allowPublicKeyRetrieval=true&useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=hilalsolak
+    ports:
+      - "8080:8080"
+
+volumes:
+  mysql_data:
+    driver: local
+
