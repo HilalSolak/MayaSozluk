@@ -1,5 +1,6 @@
 package com.hilalsolak.mayasozluk.model.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
@@ -8,6 +9,10 @@ import jakarta.persistence.Table;
 public class Word extends BaseModel {
     private String mayaWord;
 
+
+//    @Column(length = 5000)
+//    @Column(columnDefinition = "LONGTEXT") 4,294,967,295
+    @Column(columnDefinition = "TEXT") /*65,535*/
     private String meaning;
 
     private Integer searchCount;

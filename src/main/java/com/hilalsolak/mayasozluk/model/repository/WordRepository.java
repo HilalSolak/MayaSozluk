@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface WordRepository extends JpaRepository<Word, UUID> {
@@ -18,5 +19,8 @@ public interface WordRepository extends JpaRepository<Word, UUID> {
 
 
     Word findWordByMayaWord(String wordName);
+
+//    @Query(value = "SELECT * FROM t_words WHERE maya_word=:wordName",nativeQuery = true)
+//    Optional<Word> findWordByMayaWordByOptional(@Param("wordName") String wordName);
 
 }

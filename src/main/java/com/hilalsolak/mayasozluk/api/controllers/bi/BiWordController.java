@@ -2,6 +2,7 @@ package com.hilalsolak.mayasozluk.api.controllers.bi;
 
 import com.hilalsolak.mayasozluk.model.dto.requests.WordRequest;
 import com.hilalsolak.mayasozluk.model.dto.responses.WordResponse;
+import com.hilalsolak.mayasozluk.model.dto.requests.WordMeaningRequest;
 import com.hilalsolak.mayasozluk.service.WordService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -29,11 +30,19 @@ public class BiWordController {
         return service.getWordById(id);
     }
 
+
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public WordResponse createWord(@RequestBody WordRequest request){
         return service.createWord(request);
     }
+
+    @PostMapping("/meaning")
+    @ResponseStatus(HttpStatus.CREATED)
+    public WordResponse createWordMeaning(@RequestBody WordMeaningRequest request){
+        return service.createMeaningRequest(request);
+    }
+
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public WordResponse updateWordById(@PathVariable UUID id, @RequestBody WordRequest request){

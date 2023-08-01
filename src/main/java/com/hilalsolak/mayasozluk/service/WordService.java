@@ -1,5 +1,6 @@
 package com.hilalsolak.mayasozluk.service;
 
+import com.hilalsolak.mayasozluk.model.dto.requests.WordMeaningRequest;
 import com.hilalsolak.mayasozluk.model.dto.requests.WordRequest;
 import com.hilalsolak.mayasozluk.model.dto.responses.WordResponse;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,6 +12,7 @@ public interface WordService {
     List<WordResponse> getAllWords();
 
     WordResponse getWordById(UUID id);
+    WordResponse getWordByName(String name);
 
     WordResponse createWord(WordRequest request);
 
@@ -21,5 +23,7 @@ public interface WordService {
     List<WordResponse> getWordsBySearchText(@RequestParam String filter);
 
     void increaseWordSearchCount(String wordName);
+
+    WordResponse createMeaningRequest(WordMeaningRequest request);
 }
 
