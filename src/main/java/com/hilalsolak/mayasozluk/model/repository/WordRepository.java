@@ -1,13 +1,11 @@
 package com.hilalsolak.mayasozluk.model.repository;
 
 import com.hilalsolak.mayasozluk.model.entities.Word;
-import jakarta.validation.Valid;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 public interface WordRepository extends JpaRepository<Word, UUID> {
@@ -17,10 +15,7 @@ public interface WordRepository extends JpaRepository<Word, UUID> {
     @Query(value = "SELECT * FROM t_words ORDER BY maya_word ASC", nativeQuery = true)
     List<Word> findAllByMayaWordAsc();
 
-
     Word findWordByMayaWord(String wordName);
 
-//    @Query(value = "SELECT * FROM t_words WHERE maya_word=:wordName",nativeQuery = true)
-//    Optional<Word> findWordByMayaWordByOptional(@Param("wordName") String wordName);
 
 }
